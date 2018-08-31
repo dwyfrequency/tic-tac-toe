@@ -2,6 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 
+const tail = arr => arr[arr.length - 1];
+
 const calculateWinner = squares => {
   const lines = [
     [0, 1, 2],
@@ -79,8 +81,8 @@ class Game extends React.Component {
 
   handleClick = i => {
     const history = this.state.history;
-    // take current version from our history
-    const current = history[history.length - 1];
+    // take the last index value of the array, ie. current version from our history
+    const current = tail(history);
     // deep copy of the array
     const squares = [...current.squares];
     // if they have already won or the square clicked on is null, return
@@ -98,14 +100,17 @@ class Game extends React.Component {
     });
   };
 
+  jumpTo = idx => {};
+
   upNext = () => (this.state.xIsNext ? "X" : "O");
 
   render() {
     const history = this.state.history;
-    const current = history[history.length - 1];
+    const current = tail(history);
     const winner = calculateWinner(current.squares);
 
     const moves = history.map((step, move) => {
+      // if idx ie. move is is not 0 then give the number
       const desc = move ? `Go to move #${move}` : `Go to game start`;
       return (
         <li>

@@ -79,7 +79,9 @@ class Game extends React.Component {
 
   handleClick = i => {
     const history = this.state.history;
+    // take current version from our history
     const current = history[history.length - 1];
+    // deep copy of the array
     const squares = [...current.squares];
     // if they have already won or the square clicked on is null, return
     if (calculateWinner(squares) || squares[i]) {
@@ -114,6 +116,7 @@ class Game extends React.Component {
         <div className="game-board">
           <Board
             squares={current.squares}
+            // need to pass i, i will be defined in the Board
             onClick={i => this.handleClick(i)}
             upNext={this.upNext}
           />

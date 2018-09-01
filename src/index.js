@@ -4,7 +4,7 @@ import "./index.css";
 
 /* Potential improvements: 
 1. Display the location for each move in the format (col, row) in the move history list.
-2. Bold the currently selected item in the move list.
+COMPLETED - 2. Bold the currently selected item in the move list.
 3. Rewrite Board to use two loops to make the squares instead of hardcoding them.
 4. Add a toggle button that lets you sort the moves in either ascending or descending order.
 5. When someone wins, highlight the three squares that caused the win.
@@ -52,7 +52,6 @@ class Board extends React.Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <div>
         <div className="board-row">
@@ -87,8 +86,10 @@ class Game extends React.Component {
   }
 
   handleClick = i => {
+    // i === the location on the board clicked
     // we take all the past move (history), create a new array of up to and including the current step.
     // arr.slice([begin[, end]]); end: Zero-based index before which to end extraction. slice extracts up to but not including end.
+    console.log(this.state.stepNumber);
     const history = this.state.history.slice(0, this.state.stepNumber + 1);
     // take the last index value of the array, ie. current version from our history
     const current = tail(history);
@@ -127,7 +128,9 @@ class Game extends React.Component {
 
     const moves = history.map((step, move) => {
       // if idx ie. move is is not 0 then give the number
-      const desc = move ? `Go to move #${move}` : `Go to game start`;
+      /* Note working for me #### Location - [Row: ${(move + 1) %
+            4}, Column: ${(move % 3) + 1} ] */
+      const desc = move ? `Go to move #${move}.` : `Go to game start`;
       return (
         <li key={move}>
           <button

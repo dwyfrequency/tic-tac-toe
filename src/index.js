@@ -70,11 +70,8 @@ class Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      history: [
-        {
-          squares: Array(9).fill(null)
-        }
-      ],
+      history: [{ squares: Array(9).fill(null) }],
+      stepNumber: 0,
       xIsNext: true
     };
   }
@@ -100,7 +97,12 @@ class Game extends React.Component {
     });
   };
 
-  jumpTo = idx => {};
+  jumpTo = step => {
+    this.setState({
+      stepNumber: step,
+      xIsNext: step % 2 === 0
+    });
+  };
 
   upNext = () => (this.state.xIsNext ? "X" : "O");
 
@@ -113,7 +115,7 @@ class Game extends React.Component {
       // if idx ie. move is is not 0 then give the number
       const desc = move ? `Go to move #${move}` : `Go to game start`;
       return (
-        <li>
+        <li key={move}>
           <button onClick={() => this.jumpTo(move)}>{desc}</button>
         </li>
       );

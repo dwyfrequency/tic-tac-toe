@@ -2,6 +2,17 @@ import React, { Component } from "react";
 import Square from "./Square";
 
 class Board extends React.Component {
+  // createBoard = (row, col) => {
+  //   let boardTxt = "";
+  //   for (let i = 0; i < row; i++) {
+  //     boardTxt += `<div className="board-row">`;
+  //     for (let j = 0; i < col; j++) {
+  //       boardTxt +=
+  //     }
+  //     boardTxt += '</div>'
+  //   }
+  // };
+
   renderSquare(i) {
     return (
       <Square

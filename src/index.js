@@ -77,7 +77,9 @@ class Game extends React.Component {
   }
 
   handleClick = i => {
-    const history = this.state.history;
+    // we take all the past move (history), create a new array of up to and including the current step.
+    // arr.slice([begin[, end]]); end: Zero-based index before which to end extraction. slice extracts up to but not including end.
+    const history = this.state.history.slice(0, this.state.stepNumber + 1);
     // take the last index value of the array, ie. current version from our history
     const current = tail(history);
     // deep copy of the array
@@ -93,6 +95,8 @@ class Game extends React.Component {
           squares: squares
         }
       ]),
+      // by calling history prior to the concat, we do not get the full length of what will be set so we effectively get our new history.length - 1
+      stepNumber: history.length,
       xIsNext: !this.state.xIsNext
     });
   };
@@ -108,7 +112,7 @@ class Game extends React.Component {
 
   render() {
     const history = this.state.history;
-    const current = tail(history);
+    const current = history[this.state.stepNumber];
     const winner = calculateWinner(current.squares);
 
     const moves = history.map((step, move) => {

@@ -2,6 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 
+/* Potential improvements: 
+1. Display the location for each move in the format (col, row) in the move history list.
+2. Bold the currently selected item in the move list.
+3. Rewrite Board to use two loops to make the squares instead of hardcoding them.
+4. Add a toggle button that lets you sort the moves in either ascending or descending order.
+5. When someone wins, highlight the three squares that caused the win.
+COMPLETED - 6. When no one wins, display a message about the result being a draw.
+ */
+
 const tail = arr => arr[arr.length - 1];
 
 const calculateWinner = squares => {
@@ -121,7 +130,14 @@ class Game extends React.Component {
       const desc = move ? `Go to move #${move}` : `Go to game start`;
       return (
         <li key={move}>
-          <button onClick={() => this.jumpTo(move)}>{desc}</button>
+          <button
+            style={{
+              fontWeight: move === this.state.stepNumber ? "bold" : "normal"
+            }}
+            onClick={() => this.jumpTo(move)}
+          >
+            {desc}
+          </button>
         </li>
       );
     });

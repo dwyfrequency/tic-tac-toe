@@ -70,6 +70,7 @@ class Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      // hist contains an array of objects, each with its own board at a specific time
       history: [{ squares: Array(9).fill(null) }],
       stepNumber: 0,
       xIsNext: true
@@ -84,7 +85,7 @@ class Game extends React.Component {
     const current = tail(history);
     // deep copy of the array
     const squares = [...current.squares];
-    // if they have already won or the square clicked on is null, return
+    // did you win or already click that square
     if (calculateWinner(squares) || squares[i]) {
       return;
     }
@@ -128,6 +129,9 @@ class Game extends React.Component {
     let status;
     if (winner) {
       status = `Winner ${winner}`;
+      // was there no winner and the match board does not contain any blanks, then draw
+    } else if (!current.squares.includes(null)) {
+      status = `The match resulted in a draw`;
     } else {
       status = `Next Player: ${this.upNext()}`;
     }

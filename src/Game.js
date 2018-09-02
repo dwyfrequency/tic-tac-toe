@@ -29,13 +29,21 @@ class Game extends Component {
     super(props);
     this.state = {
       // hist contains an array of objects, each with its own board at a specific time
-      history: [{ squares: Array(9).fill(null) }],
+      history: [{ squares: Array(9).fill(null), coordLocation: "" }],
       stepNumber: 0,
       xIsNext: true
     };
   }
 
+  clickCoordinates = loc => {
+    // need to add 1 b/c Math.ceil(0/3) === 0
+    loc += 1;
+    const col = loc % 3;
+    return `Location - (Column: ${col ? col : 3} , Row: ${Math.ceil(loc / 3)})`;
+  };
+
   handleClick = i => {
+    console.log(this.clickCoordinates(i));
     // i === the location on the board clicked
     // we take all the past move (history), create a new array of up to and including the current step.
     // arr.slice([begin[, end]]); end: Zero-based index before which to end extraction. slice extracts up to but not including end.
@@ -52,7 +60,8 @@ class Game extends Component {
     this.setState({
       history: history.concat([
         {
-          squares: squares
+          squares: squares,
+          coordLocation: this.clickCoordinates(i)
         }
       ]),
       // by calling history prior to the concat, we do not get the full length of what will be set so we effectively get our new history.length - 1
@@ -77,11 +86,9 @@ class Game extends Component {
 
     const moves = history.map((step, move) => {
       // if idx ie. move is is not 0 then give the number
-      // console.log(step, move);
-      /*  Location - [Row: ${Math.ceil(
-            move / 3
-          )}, Column: ${(move % 3) + 1} ] */
-      const desc = move ? `Go to move #${move}.` : `Go to game start`;
+      const desc = move
+        ? `Go to move #${move}. ${step.coordLocation}`
+        : `Go to game start`;
       return (
         <li key={move}>
           <button

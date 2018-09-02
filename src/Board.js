@@ -12,7 +12,7 @@ class Board extends Component {
         counter++;
       }
       board.push(
-        <div className="board-row" key={`${i.toString()}board-row`}>
+        <div className="board-row" key={`Board-Row: ${i.toString()}`}>
           {columns}
         </div>
       );
@@ -21,37 +21,17 @@ class Board extends Component {
   };
 
   renderSquare(i) {
-    console.log(i);
     return (
       <Square
         value={this.props.squares[i]}
         onClick={() => this.props.onClick(i)}
-        key={i.toString() + "Square"}
+        key={`Square: ${i.toString()}`}
       />
     );
   }
 
   render() {
-    return (
-      <div>
-        {this.createBoard(3, 3)}
-        {/* <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
-        </div> */}
-      </div>
-    );
+    return <div>{this.createBoard(3, 3)}</div>;
   }
 }
 

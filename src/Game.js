@@ -83,6 +83,7 @@ class Game extends Component {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
     const winner = calculateWinner(current.squares);
+    // console.log({ winner });
 
     const moves = history.map((step, move) => {
       // if idx ie. move is is not 0 then give the number

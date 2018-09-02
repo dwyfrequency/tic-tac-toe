@@ -1,6 +1,6 @@
 ## Potential improvements:
 
-- :white_check_mark: - Display the location for each move in the format (col, row) in the move history list.
+- :white_check_mark: Display the location for each move in the format (col, row) in the move history list.
 
 - :white_check_mark: Bold the currently selected item in the move list.
 
@@ -10,3 +10,9 @@
 - When someone wins, highlight the three squares that caused the win.
 
 - :white_check_mark: When no one wins, display a message about the result being a draw.
+
+---
+
+## Notes
+
+For highlighting the squares, I can return an object from calculateWinner. { winningCharacter: 'X', coordinates: lines[i] }

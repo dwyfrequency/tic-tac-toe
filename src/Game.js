@@ -24,7 +24,7 @@ const calculateWinner = squares => {
   return null;
 };
 
-class Game extends React.Component {
+class Game extends Component {
   constructor(props) {
     super(props);
     this.state = {

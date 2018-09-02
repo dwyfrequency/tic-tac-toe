@@ -1,17 +1,18 @@
 import React, { Component } from "react";
 import Square from "./Square";
 
-class Board extends React.Component {
-  // createBoard = (row, col) => {
-  //   let boardTxt = "";
-  //   for (let i = 0; i < row; i++) {
-  //     boardTxt += `<div className="board-row">`;
-  //     for (let j = 0; i < col; j++) {
-  //       boardTxt +=
-  //     }
-  //     boardTxt += '</div>'
-  //   }
-  // };
+class Board extends Component {
+  createBoard = (row, col) => {
+    const board = [];
+    for (let i = 0; i < row; i++) {
+      const columns = [];
+      for (let j = 0; j < col; j++) {
+        columns.push(this.renderSquare(j));
+      }
+      board.push(<div className="board-row">{columns}</div>);
+    }
+    return board;
+  };
 
   renderSquare(i) {
     return (
@@ -25,7 +26,8 @@ class Board extends React.Component {
   render() {
     return (
       <div>
-        <div className="board-row">
+        {this.createBoard(3, 3)}
+        {/* <div className="board-row">
           {this.renderSquare(0)}
           {this.renderSquare(1)}
           {this.renderSquare(2)}
@@ -39,7 +41,7 @@ class Board extends React.Component {
           {this.renderSquare(6)}
           {this.renderSquare(7)}
           {this.renderSquare(8)}
-        </div>
+        </div> */}
       </div>
     );
   }

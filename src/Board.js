@@ -4,21 +4,29 @@ import Square from "./Square";
 class Board extends Component {
   createBoard = (row, col) => {
     const board = [];
+    let counter = 0;
     for (let i = 0; i < row; i++) {
       const columns = [];
       for (let j = 0; j < col; j++) {
-        columns.push(this.renderSquare(j));
+        columns.push(this.renderSquare(counter));
+        counter++;
       }
-      board.push(<div className="board-row">{columns}</div>);
+      board.push(
+        <div className="board-row" key={`${i.toString()}board-row`}>
+          {columns}
+        </div>
+      );
     }
     return board;
   };
 
   renderSquare(i) {
+    console.log(i);
     return (
       <Square
         value={this.props.squares[i]}
         onClick={() => this.props.onClick(i)}
+        key={i.toString() + "Square"}
       />
     );
   }

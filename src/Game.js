@@ -106,7 +106,6 @@ class Game extends Component {
     });
 
     let status;
-    console.log(winner);
     if (winner) {
       status = `Winner ${winner}`;
       // was there no winner and the match board does not contain any blanks, then draw
@@ -119,9 +118,12 @@ class Game extends Component {
       <div className="game">
         <div className="game-board">
           <Board
-            squares={current.squares} // need to pass i, i will be defined in the Board
-            onClick={i => this.handleClick(i)}
+            squares={current.squares}
+            onClick={
+              i => this.handleClick(i) // need to pass i, i will be defined in the Board
+            }
             upNext={this.upNext}
+            winningCoordinates={winnerCoords}
           />
         </div>
         <div className="game-info">

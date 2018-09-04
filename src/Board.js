@@ -3,12 +3,20 @@ import Square from "./Square";
 
 class Board extends Component {
   createBoard = (row, col) => {
+    console.log(this.props);
     const board = [];
-    let counter = 0;
+    // winner here is undefined, if we wanted a value we would need to do some destructing
+    let winner,
+      counter = 0;
+    console.log({ winner, counter });
     for (let i = 0; i < row; i++) {
       const columns = [];
       for (let j = 0; j < col; j++) {
-        columns.push(this.renderSquare(counter));
+        // try to see if the counter is included in the array, catch if the winning coords
+        try {
+          winner = this.props.winningCoordinates.includes(counter);
+        } catch (error) {}
+        columns.push(this.renderSquare(counter, winner ? "winner" : ""));
         counter++;
       }
       board.push(
@@ -20,12 +28,13 @@ class Board extends Component {
     return board;
   };
 
-  renderSquare(i) {
+  renderSquare(i, cssClass) {
     return (
       <Square
         value={this.props.squares[i]}
         onClick={() => this.props.onClick(i)}
         key={`Square: ${i.toString()}`}
+        cssClass={cssClass}
       />
     );
   }

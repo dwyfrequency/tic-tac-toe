@@ -18,10 +18,10 @@ const calculateWinner = squares => {
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
+      return { winner: squares[a], winnerCoords: lines[i] };
     }
   }
-  return null;
+  return { winner: null, winnerCoords: null };
 };
 
 class Game extends Component {
@@ -54,7 +54,7 @@ class Game extends Component {
     // deep copy of the array
     const squares = [...current.squares];
     // did you win or already click that square
-    if (calculateWinner(squares) || squares[i]) {
+    if (calculateWinner(squares)["winner"] || squares[i]) {
       return;
     }
     squares[i] = this.upNext();
@@ -83,7 +83,7 @@ class Game extends Component {
   render() {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
-    const winner = calculateWinner(current.squares);
+    const { winner, winnerCoords } = calculateWinner(current.squares);
     // console.log({ winner });
 
     const moves = history.map((step, move) => {
@@ -106,6 +106,7 @@ class Game extends Component {
     });
 
     let status;
+    console.log(winner);
     if (winner) {
       status = `Winner ${winner}`;
       // was there no winner and the match board does not contain any blanks, then draw

@@ -12,9 +12,3 @@
 - :white_check_mark: When someone wins, highlight the three squares that caused the win.
 
 - :white_check_mark: When no one wins, display a message about the result being a draw.
-
----
-
-## Notes
-
-For highlighting the squares, I can return an object from calculateWinner. { winningCharacter: 'X', coordinates: lines[i] }

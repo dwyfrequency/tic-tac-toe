@@ -1,7 +1,21 @@
 body {
   font: 14px 'Century Gothic', Futura, sans-serif;
   margin: 20px;
+  background: #75abbc;
 }
+
+.game-info button {
+  background-color: #dfe0e2; /* Green */
+  border: none;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 2px 0;
+}
+
 #root {
   height: 90vh;
   display: flex;

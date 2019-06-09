@@ -1,6 +1,12 @@
 body {
-  font: 14px "Century Gothic", Futura, sans-serif;
+  font: 14px 'Century Gothic', Futura, sans-serif;
   margin: 20px;
+}
+#root {
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 ol,
@@ -10,7 +16,7 @@ ul {
 
 .board-row:after {
   clear: both;
-  content: "";
+  content: '';
   display: table;
 }
 
@@ -22,15 +28,15 @@ ul {
   background: #fff;
   border: 1px solid #999;
   float: left;
-  font-size: 24px;
+  font-size: 48px;
   font-weight: bold;
-  line-height: 34px;
-  height: 34px;
+  line-height: 68px;
+  height: 68px;
   margin-right: -1px;
   margin-top: -1px;
   padding: 0;
   text-align: center;
-  width: 34px;
+  width: 68px;
 }
 
 .square:focus {
